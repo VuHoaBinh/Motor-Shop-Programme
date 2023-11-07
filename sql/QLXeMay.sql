@@ -98,13 +98,19 @@ insert into LoaiXe values ('XEGA',N'Xe tay ga');
 insert into LoaiXe values ('XESO',N'Xe số');
 insert into LoaiXe values ('XEGON',N'Xe tay gôn');
 
+insert into XeMay values ('XE001','XEGA', 'Yamaha', 125, N'101 kg', N'1820mm x 684mm x 1155mm', 4, 124.9, N'Đỏ');
 
 insert into PhongBan values ('PBKT',N'Phòng Kỹ Thuật');
 insert into PhongBan values ('PBNS',N'Phòng Nhân Sự');
 insert into PhongBan values ('PBTC',N'Phòng Tài chính');
 
-
 insert into KhachHang values ('KH01',N'Nguyễn Phan Anh Tuấn', '0909123445', N'HCM', 'anhtuan@gmail.com', 0);
 
 insert into NhanVien values ('NV01',N'Chí Phèo', '0909123541', N'Huế', 'chipheo@gmail.com', 0, N'Nhân viên bán hàng', 23, 15000000, 'PBTC');
 
+insert into NhaPhanPhoi values ('YAMAHA_VN',N'Yamaha Motor Việt Nam', '0911112222', N'HCM');
+insert into NhaPhanPhoi values ('HONDA_VN',N'Honda Motor Việt Nam', '0933334444', N'HN');
+
+insert into HoaDon values ('HD001', '20230101', 0, 50000000, 100000, 'NV01', 'KH01');
+
+insert into SanPham values ('SP001', 'XE001', 49900000, 1, 23, 'Xe Yamaha Grande 125cc', 'YAMAHA_VN');

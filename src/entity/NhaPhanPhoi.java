@@ -1,59 +1,63 @@
 package entity;
 
 public class NhaPhanPhoi {
-	private String maNhaPhanPhoi;
-	private String tenNhapPhanPhoi;
-	private String sdt;
-	private String diaChi;
+    private String maNhaPhanPhoi;
+    private String tenNhapPhanPhoi;
+    private String sdt;
+    private String diaChi;
 
-	public NhaPhanPhoi() {
-		super();
-	}
+    public NhaPhanPhoi() {
+        super();
+    }
 
-	public NhaPhanPhoi(String maNhaPhanPhoi, String tenNhapPhanPhoi, String sdt, String diaChi) {
-		super();
-		this.maNhaPhanPhoi = maNhaPhanPhoi;
-		this.tenNhapPhanPhoi = tenNhapPhanPhoi;
-		this.sdt = sdt;
-		this.diaChi = diaChi;
-	}
+    public NhaPhanPhoi(String maNhaPhanPhoi) {
+        this.maNhaPhanPhoi = maNhaPhanPhoi;
+    }
 
-	public String getMaNhaPhanPhoi() {
-		return maNhaPhanPhoi;
-	}
+    public NhaPhanPhoi(String maNhaPhanPhoi, String tenNhapPhanPhoi, String sdt, String diaChi) {
+        super();
+        this.maNhaPhanPhoi = maNhaPhanPhoi;
+        this.tenNhapPhanPhoi = tenNhapPhanPhoi;
+        this.sdt = sdt;
+        this.diaChi = diaChi;
+    }
 
-	public void setMaNhaPhanPhoi(String maNhaPhanPhoi) {
-		this.maNhaPhanPhoi = maNhaPhanPhoi;
-	}
+    public String getMaNhaPhanPhoi() {
+        return maNhaPhanPhoi;
+    }
 
-	public String getTenNhapPhanPhoi() {
-		return tenNhapPhanPhoi;
-	}
+    public void setMaNhaPhanPhoi(String maNhaPhanPhoi) {
+        this.maNhaPhanPhoi = maNhaPhanPhoi;
+    }
 
-	public void setTenNhapPhanPhoi(String tenNhapPhanPhoi) {
-		this.tenNhapPhanPhoi = tenNhapPhanPhoi;
-	}
+    public String getTenNhapPhanPhoi() {
+        return tenNhapPhanPhoi;
+    }
 
-	public String getSdt() {
-		return sdt;
-	}
+    public void setTenNhapPhanPhoi(String tenNhapPhanPhoi) {
+        this.tenNhapPhanPhoi = tenNhapPhanPhoi;
+    }
 
-	public void setSdt(String sdt) {
-		this.sdt = sdt;
-	}
+    public String getSdt() {
+        return sdt;
+    }
 
-	public String getDiaChi() {
-		return diaChi;
-	}
+    public void setSdt(String sdt) {
+        this.sdt = sdt;
+    }
 
-	public void setDiaChi(String diaChi) {
-		this.diaChi = diaChi;
-	}
+    public String getDiaChi() {
+        return diaChi;
+    }
 
-	@Override
-	public String toString() {
-		return "NhaPhanPhoi [maNhaPhanPhoi=" + maNhaPhanPhoi + ", tenNhapPhanPhoi=" + tenNhapPhanPhoi + ", sdt=" + sdt
-				+ ", diaChi=" + diaChi + "]";
-	}
+    public void setDiaChi(String diaChi) {
+        this.diaChi = diaChi;
+    }
+
+    @Override
+    public String toString() {
+        return "NhaPhanPhoi [maNhaPhanPhoi=" + maNhaPhanPhoi + ", tenNhapPhanPhoi=" + tenNhapPhanPhoi + ", sdt=" + sdt
+                + ", diaChi=" + diaChi + "]";
+    }
 
 }

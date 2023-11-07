@@ -1,38 +1,42 @@
 package entity;
 
 public class LoaiXe {
-	private String maLoai;
-	private String tenLoai;
+    private String maLoai;
+    private String tenLoai;
 
-	public LoaiXe(String maLoai, String tenLoai) {
-		super();
-		this.maLoai = maLoai;
-		this.tenLoai = tenLoai;
-	}
+    public LoaiXe(String maLoai) {
+        this.maLoai = maLoai;
+    }
 
-	public LoaiXe() {
-		super();
-	}
+    public LoaiXe(String maLoai, String tenLoai) {
+        super();
+        this.maLoai = maLoai;
+        this.tenLoai = tenLoai;
+    }
 
-	public String getMaLoai() {
-		return maLoai;
-	}
+    public LoaiXe() {
+        super();
+    }
 
-	public void setMaLoai(String maLoai) {
-		this.maLoai = maLoai;
-	}
+    public String getMaLoai() {
+        return maLoai;
+    }
 
-	public String getTenLoai() {
-		return tenLoai;
-	}
+    public void setMaLoai(String maLoai) {
+        this.maLoai = maLoai;
+    }
 
-	public void setTenLoai(String tenLoai) {
-		this.tenLoai = tenLoai;
-	}
+    public String getTenLoai() {
+        return tenLoai;
+    }
 
-	@Override
-	public String toString() {
-		return "LoaiXe [maLoai=" + maLoai + ", tenLoai=" + tenLoai + "]";
-	}
+    public void setTenLoai(String tenLoai) {
+        this.tenLoai = tenLoai;
+    }
+
+    @Override
+    public String toString() {
+        return "LoaiXe [maLoai=" + maLoai + ", tenLoai=" + tenLoai + "]";
+    }
 
 }
