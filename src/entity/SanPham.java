@@ -4,13 +4,18 @@ import java.util.Objects;
 
 public class SanPham {
     private String maSanPham;
-    private XeMay xe;
+    private String tenXe;
+    private LoaiXe maLoai;
+    private NhaPhanPhoi npp;
     private double gia;
-    private boolean tinhTrang;
+    private int namSanXuat;
     private int soLuong;
-    private String moTa;
-    private NhaPhanPhoi nhaPhanPhoi;
-
+    private String xiLanh;
+    private String mauSac;
+    
+        
+	
+	
     public SanPham() {
         super();
     }
@@ -19,17 +24,19 @@ public class SanPham {
         super();
         this.maSanPham = maSanPham;
     }
-
-    public SanPham(String maSanPham, XeMay xe, double gia, boolean tinhTrang, int soLuong, String moTa,
-                   NhaPhanPhoi nhaPhanPhoi) {
+//String[] arr = {"Mã SP", "Tên SP", "Loại Xe", "Nhà CC", "Giá Bán", "Năm SX", "Số Lượng" ,"Xi lanh", "Màu Sắc"};
+    public SanPham(String maSanPham, String tenXe, LoaiXe maLoai, NhaPhanPhoi npp, double gia, int namSanXuat,
+                  int soLuong, String xiLanh, String mauSac ) {
         super();
         this.maSanPham = maSanPham;
-        this.xe = xe;
+        this.tenXe = tenXe;
+        this.maLoai = maLoai;
+        this.npp = npp;
         this.gia = gia;
-        this.tinhTrang = tinhTrang;
+        this.namSanXuat = namSanXuat;
         this.soLuong = soLuong;
-        this.moTa = moTa;
-        this.nhaPhanPhoi = nhaPhanPhoi;
+        this.xiLanh = xiLanh;
+        this.mauSac = mauSac;
     }
 
     public String getMaSanPham() {
@@ -40,14 +47,30 @@ public class SanPham {
         this.maSanPham = maSanPham;
     }
 
-    public XeMay getXe() {
-        return xe;
+    public String getTenXe() {
+        return tenXe;
     }
 
-    public void setXe(XeMay xe) {
-        this.xe = xe;
+    public void setTenXe(String tenXe) {
+        this.tenXe = tenXe;
     }
 
+    public LoaiXe getMaLoai() {
+        return maLoai;
+    }
+
+    public void setMaLoai(LoaiXe maLoai) {
+        this.maLoai = maLoai;
+    }
+
+    public NhaPhanPhoi getNhaPhanPhoi () {
+        return npp;
+    }
+
+    public void setNhaPhanPhoi (NhaPhanPhoi npp) {
+        this.npp = npp;
+    }
+    
     public double getGia() {
         return gia;
     }
@@ -55,13 +78,13 @@ public class SanPham {
     public void setGia(double gia) {
         this.gia = gia;
     }
-
-    public boolean getTinhTrang() {
-        return tinhTrang;
+    
+    public int getNamSanXuat() {
+        return namSanXuat;
     }
 
-    public void setTinhTrang(boolean tinhTrang) {
-        this.tinhTrang = tinhTrang;
+    public void setNamSanXuat(int namSanXuat) {
+        this.namSanXuat = namSanXuat;
     }
 
     public int getSoLuong() {
@@ -72,21 +95,23 @@ public class SanPham {
         this.soLuong = soLuong;
     }
 
-    public String getMoTa() {
-        return moTa;
+    public String getXiLanh() {
+        return xiLanh;
     }
 
-    public void setMoTa(String moTa) {
-        this.moTa = moTa;
+    public void setXiLanh(String xiLanh) {
+        this.xiLanh = xiLanh;
+    }
+    
+    public String getMauSac() {
+        return mauSac;
     }
 
-    public NhaPhanPhoi getNhaPhanPhoi() {
-        return nhaPhanPhoi;
+    public void setMauSac(String mauSac) {
+        this.mauSac = mauSac;
     }
+    
 
-    public void setNhaPhanPhoi(NhaPhanPhoi nhaPhanPhoi) {
-        this.nhaPhanPhoi = nhaPhanPhoi;
-    }
 
     @Override
     public int hashCode() {
@@ -107,8 +132,8 @@ public class SanPham {
 
     @Override
     public String toString() {
-        return "SanPham [maSanPham=" + maSanPham + ", xe=" + xe + ", gia=" + gia + ", tinhTrang=" + tinhTrang
-                + ", soLuong=" + soLuong + ", moTa=" + moTa + ", nhaPhanPhoi=" + nhaPhanPhoi + "]";
+        return "SanPham [maSanPham=" + maSanPham + ", tenXeMay=" + tenXe + ", loaiXe=" + maLoai + ", npp=" + npp
+                + ", gia=" + gia + ", namSanXuat=" + namSanXuat + ", soLuong=" + soLuong + ", xiLanh=" + xiLanh + ", mauSac=" + mauSac + "]";
     }
 
 }

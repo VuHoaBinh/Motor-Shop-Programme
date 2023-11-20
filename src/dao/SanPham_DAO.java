@@ -1,9 +1,9 @@
 package dao;
 
 import connectDB.ConnectDB;
+import entity.LoaiXe;
 import entity.NhaPhanPhoi;
 import entity.SanPham;
-import entity.XeMay;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -21,13 +21,18 @@ public class SanPham_DAO {
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
                 String maSP = rs.getString("maSanPham");
-                XeMay xe = new XeMay(rs.getString("maXe"));
-                double gia = rs.getDouble("gia");
-                boolean tinhTrang = rs.getBoolean("tinhTrang");
-                int soLuong = rs.getInt("soLuong");
-                String moTa = rs.getString("moTa");
+                String tenXe = rs.getString("tenXeMay");
+                
+                LoaiXe loaiXe = new LoaiXe(rs.getString("maLoai"));
                 NhaPhanPhoi npp = new NhaPhanPhoi(rs.getString("maNhaPhanPhoi"));
-                SanPham sp = new SanPham(maSP, xe, gia, tinhTrang, soLuong, moTa, npp);
+                
+                double gia = rs.getDouble("gia");
+                int namSanXuat = rs.getInt("namSanXuat");
+                int soluong = rs.getInt("soLuong");
+                String xiLanh = rs.getString("dungTichXyLanh");
+                String mauSac = rs.getString("mauSac");
+                
+                SanPham sp = new SanPham(maSP, tenXe, loaiXe, npp, gia, namSanXuat, soluong , xiLanh ,mauSac);
 
                 dsSanPham.add(sp);
             }
@@ -51,13 +56,16 @@ public class SanPham_DAO {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 String maSP = rs.getString("maSanPham");
-                XeMay xe = new XeMay(rs.getString("maXe"));
-                double gia = rs.getDouble("gia");
-                boolean tinhTrang = rs.getBoolean("tinhTrang");
-                int soLuong = rs.getInt("soLuong");
-                String moTa = rs.getString("moTa");
+                String tenXe = rs.getString("tenXeMay");
+                LoaiXe loaiXe = new LoaiXe(rs.getString("maLoai"));
                 NhaPhanPhoi npp = new NhaPhanPhoi(rs.getString("maNhaPhanPhoi"));
-                SanPham sp = new SanPham(maSP, xe, gia, tinhTrang, soLuong, moTa, npp);
+                double gia = rs.getDouble("gia");
+                int namSanXuat = rs.getInt("namSanXuat");
+                
+                int soluong = rs.getInt("soLuong");
+                String xiLanh = rs.getString("dungTichXyLanh");
+                String mauSac = rs.getString("mauSac");
+                SanPham sp = new SanPham(maSP, tenXe, loaiXe, npp, gia, namSanXuat, soluong, xiLanh ,mauSac);
 
                 dsSanPham.add(sp);
             }
@@ -87,13 +95,16 @@ public class SanPham_DAO {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 String maSP = rs.getString("maSanPham");
-                XeMay xe = new XeMay(rs.getString("maXe"));
-                double gia = rs.getDouble("gia");
-                boolean tinhTrang = rs.getBoolean("tinhTrang");
-                int soLuong = rs.getInt("soLuong");
-                String moTa = rs.getString("moTa");
+                String tenXe = rs.getString("tenXeMay");
+                LoaiXe loaiXe = new LoaiXe(rs.getString("maLoai"));
                 NhaPhanPhoi npp = new NhaPhanPhoi(rs.getString("maNhaPhanPhoi"));
-                SanPham sp = new SanPham(maSP, xe, gia, tinhTrang, soLuong, moTa, npp);
+                double gia = rs.getDouble("gia");
+                int namSanXuat = rs.getInt("namSanXuat");
+                
+                int soluong = rs.getInt("soLuong");
+                String xiLanh = rs.getString("dungTichXyLanh");
+                String mauSac = rs.getString("mauSac");
+                SanPham sp = new SanPham(maSP, tenXe, loaiXe, npp, gia, namSanXuat, soluong ,xiLanh ,mauSac);
 
                 dsSanPham.add(sp);
             }
@@ -124,13 +135,16 @@ public class SanPham_DAO {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 String maSP = rs.getString("maSanPham");
-                XeMay xe = new XeMay(rs.getString("maXe"));
-                double gia = rs.getDouble("gia");
-                boolean tinhTrang = rs.getBoolean("tinhTrang");
-                int soLuong = rs.getInt("soLuong");
-                String moTa = rs.getString("moTa");
+                String tenXe = rs.getString("tenXeMay");
+                LoaiXe loaiXe = new LoaiXe(rs.getString("maLoai"));
                 NhaPhanPhoi npp = new NhaPhanPhoi(rs.getString("maNhaPhanPhoi"));
-                SanPham sp = new SanPham(maSP, xe, gia, tinhTrang, soLuong, moTa, npp);
+                double gia = rs.getDouble("gia");
+                int namSanXuat = rs.getInt("namSanXuat");
+                
+                int soLuong = rs.getInt("soLuong");
+                String xiLanh = rs.getString("dungTichXyLanh");
+                String mauSac = rs.getString("mauSac");
+                SanPham sp = new SanPham(maSP, tenXe, loaiXe, npp, gia, namSanXuat, soLuong,xiLanh ,mauSac);
 
                 dsSanPham.add(sp);
             }
@@ -147,80 +161,65 @@ public class SanPham_DAO {
         return dsSanPham;
     }
 
-    public boolean create(SanPham sp) {
+    public void create(SanPham sp) throws SQLException {
         ConnectDB.getInstance();
         Connection con = ConnectDB.getConnection();
         PreparedStatement statement = null;
-        int n = 0;
-
         try {
-            statement = con.prepareStatement("insert SanPham values (?,?,?,?,?,?,?)");
+            statement = con.prepareStatement("INSERT INTO SanPham VALUES (?,?,?,?,?,?,?,?,?)");
             statement.setString(1, sp.getMaSanPham());
-            statement.setString(2, sp.getXe().getMaXeMay());
-            statement.setDouble(3, sp.getGia());
-            statement.setBoolean(4, sp.getTinhTrang());
-            statement.setInt(5, sp.getSoLuong());
-            statement.setString(6, sp.getMoTa());
-            statement.setString(7, sp.getNhaPhanPhoi().getMaNhaPhanPhoi());
-            n = statement.executeUpdate();
+            statement.setString(2, sp.getTenXe());
+            statement.setString(3, sp.getMaLoai().getMaLoai());
+            statement.setString(4, sp.getNhaPhanPhoi().getMaNhaPhanPhoi());
+            statement.setDouble(5, sp.getGia());
+            statement.setInt(6, sp.getNamSanXuat());
+            statement.setInt(7, sp.getSoLuong());
+            statement.setString(8, sp.getXiLanh());
+            statement.setString(9, sp.getMauSac());
+            statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                statement.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            statement.close();
         }
-        return n > 0;
-    }
+    }   
 
-    public boolean update(SanPham sp) {
+    public void update(SanPham sp) {
         ConnectDB.getInstance();
         Connection con = ConnectDB.getConnection();
-        PreparedStatement statement = null;
-        int n = 0;
-        try {
-            statement = con.prepareStatement(
-                    "update SanPham set maXe=?, gia=?, tinhTrang=?, soLuong=?, moTa=?, maNhaPhanPhoi=?" + "where maSanPham=? ");
-            statement = con.prepareStatement("insert SanPham values (?,?,?,?,?,?,?)");
-            statement.setString(1, sp.getXe().getMaXeMay());
-            statement.setDouble(2, sp.getGia());
-            statement.setBoolean(3, sp.getTinhTrang());
-            statement.setInt(4, sp.getSoLuong());
-            statement.setString(5, sp.getMoTa());
-            statement.setString(6, sp.getNhaPhanPhoi().getMaNhaPhanPhoi());
-            statement.setString(7, sp.getMaSanPham());
-            n = statement.executeUpdate();
+        String sql = "UPDATE SanPham SET maSanPham=?, tenXeMay=?, maLoai=?, maNhaPhanPhoi=?, gia=?, namSanXuat=?, soLuong=?, dungTichXyLanh=?, mauSac=? WHERE maSanPham=?";
+        try (PreparedStatement statement = con.prepareStatement(sql)) {
+            statement.setString(1, sp.getMaSanPham());
+            statement.setString(2, sp.getTenXe());
+            statement.setString(3, sp.getMaLoai().getMaLoai());
+            statement.setString(4, sp.getNhaPhanPhoi().getMaNhaPhanPhoi());
+            statement.setDouble(5, sp.getGia());
+            statement.setInt(6, sp.getNamSanXuat());
+            statement.setInt(7, sp.getSoLuong());
+            statement.setString(8, sp.getXiLanh());
+            statement.setString(9, sp.getMauSac());
+            statement.setString(10, sp.getMaSanPham()); // Set the parameter for WHERE clause
+            statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                statement.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
-        return n > 0;
     }
 
-    public void delete(String maSP) {
+
+    public void delete(SanPham sp) throws SQLException {
         ConnectDB.getInstance();
         Connection con = ConnectDB.getConnection();
         PreparedStatement stmt = null;
         String sql = "delete from SanPham where maSanPham = ?";
         try {
             stmt = con.prepareStatement(sql);
-            stmt.setString(1, maSP);
+            stmt.setString(1, sp.getMaSanPham());
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                stmt.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            stmt.close();
         }
     }
+    
 }

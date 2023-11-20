@@ -1,16 +1,24 @@
 
 package gui;
-
+import connectDB.ConnectDB;
+import dao.PhongBan_DAO;
+import dao.NhanVien_DAO;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author ASUS
  */
 public class frmAdminMenu extends javax.swing.JFrame {
 
+    private PhongBan_DAO pb_DAO = new PhongBan_DAO(); 
+    private NhanVien_DAO nv_DAO = new NhanVien_DAO();
     
-    
-    public frmAdminMenu() {
+        
+    public frmAdminMenu() throws SQLException {
         initComponents();
+        setSize(500, 500);
     }
 
     /**
@@ -58,7 +66,6 @@ public class frmAdminMenu extends javax.swing.JFrame {
         jpMenu.setBackground(new java.awt.Color(255, 255, 255));
 
         barMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/bars.jpg"))); // NOI18N
-        barMenu.setText("jLabel1");
         barMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 barMenuMouseClicked(evt);
@@ -118,16 +125,15 @@ public class frmAdminMenu extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(Home)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jpMenuLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpMenuLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jpMenuLayout.createSequentialGroup()
+                .addGroup(jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpMenuLayout.createSequentialGroup()
                         .addGroup(jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Motor, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1)
-                            .addComponent(barMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Statictise)
                             .addGroup(jpMenuLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
@@ -138,19 +144,23 @@ public class frmAdminMenu extends javax.swing.JFrame {
                             .addComponent(jLabel7))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpMenuLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(barMenu)
+                .addGap(14, 14, 14))
         );
         jpMenuLayout.setVerticalGroup(
             jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpMenuLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(24, 24, 24)
                 .addComponent(barMenu)
-                .addGap(90, 90, 90)
+                .addGap(72, 72, 72)
                 .addComponent(jLabel1)
                 .addGap(26, 26, 26)
                 .addComponent(Home)
                 .addGap(18, 18, 18)
                 .addComponent(Motor)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(12, 12, 12)
                 .addComponent(Employee)
                 .addGap(24, 24, 24)
                 .addComponent(Statictise)
@@ -164,7 +174,7 @@ public class frmAdminMenu extends javax.swing.JFrame {
                 .addComponent(jLabel10)
                 .addGap(28, 28, 28)
                 .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                 .addComponent(out)
                 .addContainerGap())
         );
@@ -182,10 +192,9 @@ public class frmAdminMenu extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(JPanelControl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(0, 38, Short.MAX_VALUE)
+                .addComponent(JPanelControl, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jpMenu, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -208,7 +217,7 @@ public class frmAdminMenu extends javax.swing.JFrame {
 //        JPanelControl.add(frm);
 //        validate();
         JPanelControl.removeAll();
-        frmMoto frm = new frmMoto();
+        frmMotoAdmin frm = new frmMotoAdmin();
         JPanelControl.add(frm);
         validate();
     }//GEN-LAST:event_HomeMouseClicked
@@ -225,7 +234,7 @@ public class frmAdminMenu extends javax.swing.JFrame {
     private void MotorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MotorMouseClicked
         // TODO add your handling code here:
         JPanelControl.removeAll();
-        frmMoto frm = new frmMoto();
+        frmMotoAdmin frm = new frmMotoAdmin();
         JPanelControl.add(frm);
         validate();
     }//GEN-LAST:event_MotorMouseClicked
@@ -233,7 +242,13 @@ public class frmAdminMenu extends javax.swing.JFrame {
     private void EmployeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmployeeMouseClicked
         // TODO add your handling code here:
         JPanelControl.removeAll();
-        frmEmployee frm = new frmEmployee();
+        try {
+            ConnectDB.getInstance().connect();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        frmEmployeeAdmin frm = new frmEmployeeAdmin();
         JPanelControl.add(frm);
         validate();
     }//GEN-LAST:event_EmployeeMouseClicked
@@ -268,7 +283,11 @@ public class frmAdminMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmAdminMenu().setVisible(true);
+                try {
+                    new frmAdminMenu().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(frmAdminMenu.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

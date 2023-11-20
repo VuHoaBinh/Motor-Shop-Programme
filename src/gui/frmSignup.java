@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ADMIN
  */
-public class Dang_Ky extends javax.swing.JFrame {
+public class frmSignup extends javax.swing.JFrame {
 
     /**
      * Creates new form Dang_Ky
@@ -22,7 +22,7 @@ public class Dang_Ky extends javax.swing.JFrame {
     boolean ktThem;
     String macu;
     String sql;
-    public Dang_Ky() {
+    public frmSignup() {
         initComponents();
         initComponents();
         setLocationRelativeTo(null);
@@ -131,11 +131,11 @@ public class Dang_Ky extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txt_Email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_dangky)
                     .addComponent(btndangky1))
-                .addGap(27, 27, 27))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
@@ -238,20 +238,21 @@ public class Dang_Ky extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Dang_Ky.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmSignup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Dang_Ky.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmSignup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Dang_Ky.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmSignup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Dang_Ky.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmSignup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Dang_Ky().setVisible(true);
+                new frmSignup().setVisible(true);
             }
         });
     }
