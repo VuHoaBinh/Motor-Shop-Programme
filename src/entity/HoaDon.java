@@ -1,36 +1,25 @@
 package entity;
 
-import java.sql.Date;
 import java.util.Objects;
 
 public class HoaDon {
     private String maHoaDon;
-    private Date ngayLapHoaDon;
-    private int soLanTraGop;
-    private double tienNhanVao;
-    private double tienThua;
-    private NhanVien nhanVien;
-    private KhachHang khachHang;
+    private double giaSP;
+    private SanPham maSanPham;
 
-    public HoaDon() {
-            super();
-    }
 
     public HoaDon(String maHoaDon) {
-            super();
-            this.maHoaDon = maHoaDon;
+        super();
+        this.maHoaDon = maHoaDon;
+        this.giaSP = giaSP;
     }
 
-    public HoaDon(String maHoaDon, Date ngayLapHoaDon, int soLanTraGop, double tienNhanVao, double tienThua,
-                    NhanVien nhanVien, KhachHang khachHang) {
-            super();
-            this.maHoaDon = maHoaDon;
-            this.ngayLapHoaDon = ngayLapHoaDon;
-            this.soLanTraGop = soLanTraGop;
-            this.tienNhanVao = tienNhanVao;
-            this.tienThua = tienThua;
-            this.nhanVien = nhanVien;
-            this.khachHang = khachHang;
+    public HoaDon(String maHoaDon, double giaSP
+               ,SanPham maSanPham) {
+        super();
+        this.maHoaDon = maHoaDon;
+        this.giaSP = giaSP;
+        this.maSanPham = maSanPham;
     }
 
     public String getMaHoaDon() {
@@ -41,53 +30,22 @@ public class HoaDon {
             this.maHoaDon = maHoaDon;
     }
 
-    public Date getNgayLapHoaDon() {
-            return ngayLapHoaDon;
+    public SanPham getSanPham() {
+            return maSanPham;
     }
 
-    public void setNgayLapHoaDon(Date ngayLapHoaDon) {
-            this.ngayLapHoaDon = ngayLapHoaDon;
+    public void setSanPham(SanPham maSanPham) {
+            this.maSanPham = maSanPham;
+    }
+    
+    public double getGiaSP() {
+            return giaSP;
     }
 
-    public int getSoLanTraGop() {
-            return soLanTraGop;
+    public void setGiaSP(double giaSP) {
+            this.giaSP = giaSP;
     }
-
-    public void setSoLanTraGop(int soLanTraGop) {
-            this.soLanTraGop = soLanTraGop;
-    }
-
-    public double getTienNhanVao() {
-            return tienNhanVao;
-    }
-
-    public void setTienNhanVao(double tienNhanVao) {
-            this.tienNhanVao = tienNhanVao;
-    }
-
-    public double getTienThua() {
-            return tienThua;
-    }
-
-    public void setTienThua(double tienThua) {
-            this.tienThua = tienThua;
-    }
-
-    public NhanVien getNhanVien() {
-            return nhanVien;
-    }
-
-    public void setNhanVien(NhanVien nhanVien) {
-            this.nhanVien = nhanVien;
-    }
-
-    public KhachHang getKhachHang() {
-            return khachHang;
-    }
-
-    public void setKhachHang(KhachHang khachHang) {
-            this.khachHang = khachHang;
-    }
+    
     @Override
     public int hashCode() {
             return Objects.hash(maHoaDon);
@@ -106,8 +64,6 @@ public class HoaDon {
     }
     @Override
     public String toString() {
-            return "HoaDon [maHoaDon=" + maHoaDon + ", ngayLapHoaDon=" + ngayLapHoaDon + ", soLanTraGop=" + soLanTraGop
-                            + ", tienNhanVao=" + tienNhanVao + ", tienThua=" + tienThua + ", nhanVien=" + nhanVien + ", khachHang="
-                            + khachHang + "]";
+            return "HoaDon [maHoaDon=" + maHoaDon + ", soLanTraGop="+", sanpham=" + maSanPham + "]";
     }
 }

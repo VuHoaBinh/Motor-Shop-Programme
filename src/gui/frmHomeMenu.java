@@ -60,6 +60,11 @@ public class frmHomeMenu extends javax.swing.JFrame {
         });
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/statistic-home.jpg"))); // NOI18N
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+        });
 
         jLabel9.setText("------------");
 
@@ -177,6 +182,14 @@ public class frmHomeMenu extends javax.swing.JFrame {
         loginFrame.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        // TODO add your handling code here:
+        JPanelControl.removeAll();
+        frmStatistics frm = new frmStatistics();
+        JPanelControl.add(frm);
+        validate();
+    }//GEN-LAST:event_jLabel8MouseClicked
 
     /**
      * @param args the command line arguments

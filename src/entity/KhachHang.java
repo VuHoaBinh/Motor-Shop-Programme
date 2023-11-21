@@ -7,8 +7,7 @@ public class KhachHang {
     private String hoTen;
     private String sdt;
     private String diaChi;
-    private String email;
-    private boolean gioiTinh;
+    
 
     public KhachHang() {
     }
@@ -17,13 +16,12 @@ public class KhachHang {
         this.maKhachHang = maKhachHang;
     }
 
-    public KhachHang(String maKhachHang, String hoTen, String sdt, String diaChi, String email, boolean gioiTinh) {
+    public KhachHang(String maKhachHang, String hoTen, String sdt, String diaChi) {
         this.maKhachHang = maKhachHang;
         this.hoTen = hoTen;
         this.sdt = sdt;
         this.diaChi = diaChi;
-        this.email = email;
-        this.gioiTinh = gioiTinh;
+        
     }
 
     public String getMaKhachHang() {
@@ -58,21 +56,6 @@ public class KhachHang {
         this.diaChi = diaChi;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public boolean getGioiTinh() {
-        return gioiTinh;
-    }
-
-    public void setGioiTinh(boolean gioiTinh) {
-        this.gioiTinh = gioiTinh;
-    }
 
     @Override
     public int hashCode() {
@@ -97,9 +80,6 @@ public class KhachHang {
                 "maKhachHang='" + maKhachHang + '\'' +
                 ", hoTen='" + hoTen + '\'' +
                 ", sdt='" + sdt + '\'' +
-                ", diaChi='" + diaChi + '\'' +
-                ", email='" + email + '\'' +
-                ", gioiTinh=" + gioiTinh +
-                '}';
+                ", diaChi='" + diaChi + '}';
     }
 }

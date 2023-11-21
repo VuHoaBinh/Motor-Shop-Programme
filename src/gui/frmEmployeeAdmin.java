@@ -636,7 +636,7 @@ public class frmEmployeeAdmin extends javax.swing.JPanel {
             for(NhanVien nv: listNV) {
                 model.addRow(new Object[] {nv.getMaNhanVien(),
                     nv.getHoTen(), nv.getSdt(), nv.getDiaChi(),
-                    nv.getEmail(), nv.getGioiTinh()?"Nam":"Nu"   , nv.getChucVu(), 
+                    nv.getEmail(), nv.getGioiTinh()?"Nam":"Nu", nv.getChucVu(), 
                     nv.getTuoi(),nv.getMaPhongBan().getMaPhongBan()});
             }
         } catch (Exception e) {

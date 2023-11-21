@@ -146,9 +146,8 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="cboAdmin" min="-2" pref="85" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Component id="txtForgotPass" min="-2" pref="138" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                           </Group>
@@ -186,10 +185,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="fieldPassword" min="-2" pref="33" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtForgotPass" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cboAdmin" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="txtForgotPass" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnLogin" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
@@ -243,7 +239,6 @@
             </Component>
             <Component class="javax.swing.JPasswordField" name="fieldPassword">
               <Properties>
-                <Property name="text" type="java.lang.String" value="jPasswordField1"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
                     <BevelBorder/>
@@ -253,7 +248,6 @@
             </Component>
             <Component class="javax.swing.JTextField" name="fieldUserName">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Username "/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
                     <BevelBorder/>
@@ -278,14 +272,6 @@
                   <Image iconType="3" name="/icon/logo-login.jpg"/>
                 </Property>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JCheckBox" name="cboAdmin">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="ADMIN"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cboAdminActionPerformed"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>

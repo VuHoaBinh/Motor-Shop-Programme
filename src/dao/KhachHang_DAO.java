@@ -22,9 +22,7 @@ public class KhachHang_DAO {
                 String hoTen = rs.getString("hoTen");
                 String sdt = rs.getString("sdt");
                 String diaChi = rs.getString("diaChi");
-                String email = rs.getString("email");
-                boolean gioiTinh = rs.getBoolean("gioiTinh");
-                KhachHang kh = new KhachHang(maKH, hoTen, sdt, diaChi, email, gioiTinh);
+                KhachHang kh = new KhachHang(maKH, hoTen, sdt, diaChi);
 
                 dsKhachHang.add(kh);
             }
@@ -51,9 +49,7 @@ public class KhachHang_DAO {
                 String hoTen = rs.getString("hoTen");
                 String sdt = rs.getString("sdt");
                 String diaChi = rs.getString("diaChi");
-                String email = rs.getString("email");
-                boolean gioiTinh = rs.getBoolean("gioiTinh");
-                KhachHang kh = new KhachHang(maKH, hoTen, sdt, diaChi, email, gioiTinh);
+                KhachHang kh = new KhachHang(maKH, hoTen, sdt, diaChi);
 
                 dsKhachHang.add(kh);
             }
@@ -76,13 +72,11 @@ public class KhachHang_DAO {
         int n = 0;
 
         try {
-            statement = con.prepareStatement("insert KhachHang values (?,?,?,?,?,?)");
+            statement = con.prepareStatement("insert KhachHang values (?,?,?,?)");
             statement.setString(1, kh.getMaKhachHang());
             statement.setString(2, kh.getHoTen());
             statement.setString(3, kh.getSdt());
             statement.setString(4, kh.getDiaChi());
-            statement.setString(5, kh.getEmail());
-            statement.setBoolean(6, kh.getGioiTinh());
             n = statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -96,41 +90,31 @@ public class KhachHang_DAO {
         return n > 0;
     }
 
-    public boolean update(KhachHang kh) {
+    public void update(KhachHang kh) {
         ConnectDB.getInstance();
         Connection con = ConnectDB.getConnection();
-        PreparedStatement statement = null;
-        int n = 0;
-        try {
-            statement = con.prepareStatement(
-                    "update KhachHang set hoTen=?, sdt=?" + "diaChi=?, email=?,gioiTinh=?" + "where maKhachHang=? ");
-            statement.setString(1, kh.getHoTen());
-            statement.setString(2, kh.getSdt());
-            statement.setString(3, kh.getDiaChi());
-            statement.setString(4, kh.getEmail());
-            statement.setBoolean(5, kh.getGioiTinh());
-            statement.setString(6, kh.getMaKhachHang());
-            n = statement.executeUpdate();
+        String sql = "UPDATE KhachHang SET maKhachHang=?, hoTen=?, sdt=?, diaChi=? WHERE maKhachHang=?";
+        try (PreparedStatement statement = con.prepareStatement(sql)) {
+            statement.setString(1, kh.getMaKhachHang());
+            statement.setString(2, kh.getHoTen());
+            statement.setString(3, kh.getSdt());
+            statement.setString(4, kh.getDiaChi());
+            statement.setString(5, kh.getMaKhachHang()); 
+            statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                statement.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return n > 0;
+        } 
     }
 
-    public void delete(String maKH) {
+
+    public void delete(KhachHang kh) {
         ConnectDB.getInstance();
         Connection con = ConnectDB.getConnection();
         PreparedStatement stmt = null;
         String sql = "delete from KhachHang where maKhachHang = ?";
         try {
             stmt = con.prepareStatement(sql);
-            stmt.setString(1, maKH);
+            stmt.setString(1, kh.getMaKhachHang());
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

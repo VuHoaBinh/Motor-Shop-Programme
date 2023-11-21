@@ -1,6 +1,28 @@
 package gui;
 
+import connectDB.ConnectDB;
+import dao.NhanVien_DAO;
+import entity.NhanVien;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 public class frmLogin extends javax.swing.JFrame {
+    
+    private NhanVien_DAO nv_DAO;
+    
+    private String TenNV;
+    
+    public String getTenNV() {
+        return TenNV;
+    }
+
+    public void setTenNV(String TenNV) {
+        this.TenNV = TenNV;
+    }
+    
     public frmLogin() {
         initComponents();
     }
@@ -19,7 +41,6 @@ public class frmLogin extends javax.swing.JFrame {
         fieldUserName = new javax.swing.JTextField();
         txtTitle = new javax.swing.JLabel();
         imgLogin = new javax.swing.JLabel();
-        cboAdmin = new javax.swing.JCheckBox();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -53,10 +74,8 @@ public class frmLogin extends javax.swing.JFrame {
         txtForgotPass.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         txtForgotPass.setText("Forgot your password?");
 
-        fieldPassword.setText("jPasswordField1");
         fieldPassword.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        fieldUserName.setText("Username ");
         fieldUserName.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         fieldUserName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,13 +87,6 @@ public class frmLogin extends javax.swing.JFrame {
         txtTitle.setText("WELCOME");
 
         imgLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/logo-login.jpg"))); // NOI18N
-
-        cboAdmin.setText("ADMIN");
-        cboAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboAdminActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -96,8 +108,7 @@ public class frmLogin extends javax.swing.JFrame {
                 .addGap(90, 90, 90)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(cboAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(txtForgotPass, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -127,9 +138,7 @@ public class frmLogin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(fieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtForgotPass)
-                    .addComponent(cboAdmin))
+                .addComponent(txtForgotPass)
                 .addGap(18, 18, 18)
                 .addComponent(btnLogin)
                 .addGap(38, 38, 38))
@@ -229,25 +238,50 @@ public class frmLogin extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        if(cboAdmin.isSelected()){
-            frmAdminMenu openAdmin = new frmAdminMenu();
-            openAdmin.setVisible(true);
-            openAdmin.pack();
-            openAdmin.setLocationRelativeTo(null);
-            this.dispose();
-        }else{
-            frmHomeMenu openHome = new frmHomeMenu();
-            openHome.setVisible(true);
-            openHome.pack();
-            openHome.setLocationRelativeTo(null);
-            this.dispose();
+        try {
+            ConnectDB.getInstance().connect();
+        } catch (SQLException e) {
+                // TODO Auto-generated catch block
+            e.printStackTrace();
         }
-    }//GEN-LAST:event_btnLoginActionPerformed
-
-    private void cboAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboAdminActionPerformed
-        // TODO add your handling code here:
         
-    }//GEN-LAST:event_cboAdminActionPerformed
+        nv_DAO = new NhanVien_DAO();
+        
+        if ("admin".equals(fieldUserName.getText()) && "123456".equals(new String(fieldPassword.getPassword()))) {
+            try {
+                System.out.println(fieldUserName.getText());
+                System.out.println(new String(fieldPassword.getPassword()));  
+                frmAdminMenu openHome = new frmAdminMenu();
+                openHome.setVisible(true);
+                openHome.pack();
+                openHome.setLocationRelativeTo(null);
+                this.dispose();
+            } catch (SQLException ex) {
+                Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+           List<NhanVien> listNV = nv_DAO.getAllTbNhanVien();
+            boolean found = false;
+            for (NhanVien nv : listNV) {
+                if ((nv.getMaNhanVien()).equals(fieldUserName.getText()) && "123456".equals(new String(fieldPassword.getPassword()))) {
+                    
+                    setTenNV(nv.getMaNhanVien());
+                    
+                    frmHomeMenu openHome = new frmHomeMenu();
+                    openHome.setVisible(true);
+                    openHome.pack();
+                    openHome.setLocationRelativeTo(null);
+                    this.dispose();
+                    found = true;
+                    break; 
+                }
+            }
+            if (!found) {
+                JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng tên đăng nhập và mật khẩu.", "Lỗi", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnDangKyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangKyActionPerformed
         frmSignup l = new frmSignup();
@@ -294,7 +328,6 @@ public class frmLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDangKy;
     private javax.swing.JButton btnLogin;
-    private javax.swing.JCheckBox cboAdmin;
     private javax.swing.JPasswordField fieldPassword;
     private javax.swing.JTextField fieldUserName;
     private javax.swing.JLabel imgLogin;

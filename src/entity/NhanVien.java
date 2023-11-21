@@ -14,7 +14,7 @@ public class NhanVien {
     private PhongBan maPhongBan;
 
     public NhanVien() {
-            super();
+        super();
     }
 
     public NhanVien(String maNhanVien) {
